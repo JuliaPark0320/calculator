@@ -83,4 +83,12 @@ QUnit.test( "소수점은 5자리까지 계산한다. (5자리이하 버림.)", 
 });
 
 
+QUnit.test( "초기화를 할 수 있다.", function() {
+// given
+    var expactedValue = this.calculatorModel._defaultValue;
+// when
+    this.calculatorModel.remove();
+// then
+    equal(this.calculatorModel.getValue(), expactedValue, "초기화를 할 수 있다.");
+});
 

@@ -40,7 +40,7 @@ Calculator.model.prototype = {
     },
 
     getValue: function(){
-        return this._validate(this._value);
+        return this._value;
     },
 
     _validate: function(value){
