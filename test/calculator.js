@@ -55,3 +55,32 @@ QUnit.test( "곱하기 연산을 할 수 있다.", function() {
     equal( this.calculatorModel.getValue(), value * inputValue, "곱하기 OK ");
 });
 
+QUnit.test( "소수점은 5자리까지 계산한다. (5자리이하 버림.)", function() {
+    // given
+    var testValue = 23;
+    var expectedValue = 23;
+    var resultValue;
+    // when
+    resultValue = this.calculatorModel._validate(testValue);
+    // then
+    equal(resultValue, expectedValue, "소수점 자리 - 5자리이하인 경우");
+
+    // given
+    testValue = 12345.12345;
+    expectedValue = 12345.12345;
+    // when
+    resultValue = this.calculatorModel._validate(testValue);
+    // then
+    equal(resultValue, expectedValue, "소수점 자리 - 5자리인 경우");
+
+    // given
+    testValue = 23.1234568;
+    expectedValue = 23.12345;
+    // when
+    resultValue = this.calculatorModel._validate(testValue);
+    // then
+    equal(resultValue, expectedValue, "소수점 자리 - 5자리이상인 경우");
+});
+
+
+
