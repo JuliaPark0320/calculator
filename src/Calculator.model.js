@@ -18,6 +18,22 @@ Calculator.model.prototype = {
         return this._value;
     },
 
+    subtract: function(inputValue){
+        this._value -= inputValue;
+        return this._value;
+    },
+
+    divide: function(inputValue){
+        this._value /= inputValue;
+        return this._value;
+    },
+
+
+    multiply: function(inputValue){
+        this._value *= inputValue;
+        return this._value;
+    },
+
     getValue: function(){
         return this._value;
     },

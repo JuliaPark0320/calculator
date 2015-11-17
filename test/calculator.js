@@ -32,7 +32,7 @@ QUnit.test( "뺄셈 연산을 할 수 있다.", function() {
 // when
     this.calculatorModel.subtract(inputValue);
 // then
-    equal( this.calculatorModel.getValue(), value + inputValue, "뺄셈 OK ");
+    equal( this.calculatorModel.getValue(), value - inputValue, "뺄셈 OK ");
 });
 
 QUnit.test( "나누기 연산을 할 수 있다.", function() {
@@ -42,16 +42,16 @@ QUnit.test( "나누기 연산을 할 수 있다.", function() {
 // when
     this.calculatorModel.divide(inputValue);
 // then
-    equal( this.calculatorModel.getValue(), value + inputValue, "나누기 OK ");
+    equal( this.calculatorModel.getValue(), value / inputValue, "나누기 OK ");
 });
 
-//초기화 테스트
 QUnit.test( "곱하기 연산을 할 수 있다.", function() {
 // given
     var value = 0;
     var inputValue = 10;
 // when
-    this.calculatorModel.divide(inputValue);
+    this.calculatorModel.multiply(inputValue);
 // then
-    equal( this.calculatorModel.getValue(), value + inputValue, "곱하기 OK ");
+    equal( this.calculatorModel.getValue(), value * inputValue, "곱하기 OK ");
 });
+
