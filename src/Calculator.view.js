@@ -4,10 +4,10 @@ Calculator.view = function(){
     };
 
 Calculator.view.prototype = {
-    init: function(oModel, option){
+    init: function(option){
+        this._callbackOperate = option.callbackOperate || function(){};
         this._value = option.defaultValue || 0;
         this._displayValue = option.defaultValue || [0];
-        this._oModel = oModel;
         this._isOverLength = false;
         this._cashElement(option);
         this._bindEvent();
@@ -41,7 +41,7 @@ Calculator.view.prototype = {
         }
 
         if(type === "operator"){
-            this._calculate(value);
+            this._callbackOperate(this._value, value);
             return;
         }
 
@@ -62,6 +62,19 @@ Calculator.view.prototype = {
         this._validate();
     },
 
+    _setValue: function(value){
+        this._value = value;
+    },
+
+    _setValue: function(value){
+        this._value = value;
+    },
+
+    displayScreenBy: function(value){
+        this._updateScreen(value);
+        this._setValue("");
+    },
+
     _validate: function(value){
         var str = Number(this._value).toString();
         var removedPoint = str.replace(".", "");
@@ -79,13 +92,8 @@ Calculator.view.prototype = {
 
     },
 
-    _calculate: function(value){
-        console.log("_calculate : " + value);
-
-    },
-
     _onClickRemove: function(){
         this._value = 0;
-        this._updateScreen(this._value);
-    },
+        this.updateScreen(this._value);
+    }
 };
