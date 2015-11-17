@@ -3,6 +3,9 @@ module("Module Name", {
         this.calculatorModel = new Calculator.model({
             defaultValue: 0
         });
+        this.calculatorView = new Calculator.view(this.calculatorModel, {
+            defaultValue: 0
+        });
     },
 
     teardown: function() {
@@ -90,5 +93,14 @@ QUnit.test( "초기화를 할 수 있다.", function() {
     this.calculatorModel.remove();
 // then
     equal(this.calculatorModel.getValue(), expactedValue, "초기화를 할 수 있다.");
+});
+
+QUnit.test( "R 키를 누를경우 초기화", function() {
+// given
+    var expactedValue = 0;
+// when
+    this.calculatorView._onClickRemove();
+// then
+    equal(this.calculatorView._screen.value, expactedValue, "초기화를 할 수 있다.");
 });
 

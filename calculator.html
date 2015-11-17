@@ -17,39 +17,39 @@
 
     <div class="keys">
         <div>
-            <div class="num">
-                <button>7</button>
-                <button>8</button>
-                <button>9</button>
-            </div>
-            <button class="operator" data-value="add">+</button>
+            <button data-type="num">7</button>
+            <button data-type="num">8</button>
+            <button data-type="num">9</button>
+            <button class="add" data-type="operator">+</button>
         </div>
         <div>
-            <div class="num">
-                <button>4</button>
-                <button>5</button>
-                <button>6</button>
-            </div>
-            <button class="operator">-</button>
+            <button data-type="num">4</button>
+            <button data-type="num">5</button>
+            <button data-type="num">6</button>
+            <button class="operator" data-type="operator">-</button>
         </div>
         <div>
-            <div class="num">
-                <button>1</button>
-                <button>2</button>
-                <button>3</button>
-            </div>
-            <button class="operator">÷</button>
+            <button data-type="num">1</button>
+            <button data-type="num">2</button>
+            <button data-type="num">3</button>
+            <button class="divide" data-type="operator">÷</button>
         </div>
         <div>
-            <div class="num">
-                <button>0</button>
-                <button>.</button>
-            </div>
-            <button class="eval">=</button>
-            <button class="operator">x</button>
+            <button data-type="num">0</button>
+            <button data-type="num">.</button>
+            <button class="eval" data-type="operator">=</button>
+            <button class="operator" data-type="operator">x</button>
         </div>
     </div>
 </div>
+
+<script src="./src/Calculator.model.js"></script>
+<script src="./src/Calculator.view.js"></script>
+<script>
+    var model = new Calculator.model({});
+    var view = new Calculator.view(model, {});
+
+</script>
 
 </body>
 </html>
