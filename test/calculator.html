@@ -6,41 +6,49 @@
     <link rel="stylesheet" href="../node_modules/qunitjs/qunit/qunit.css">
 </head>
 <body>
-    <div id="calculator">
-        <div class="top">
-            <input class="screen" disabled value=0>
-            <button class="clear">C</button>
-        </div>
+<div id="calculator">
+    <div class="top">
+        <input class="screen" disabled value=0>
+        <button class="clear">C</button>
+    </div>
 
-        <div class="keys">
-            <div>
+    <div class="keys">
+        <div>
+            <div class="num">
                 <button>7</button>
                 <button>8</button>
                 <button>9</button>
-                <button class="operator">+</button>
             </div>
-            <div>
+            <button class="operator" data-value="add">+</button>
+        </div>
+        <div>
+            <div class="num">
                 <button>4</button>
                 <button>5</button>
                 <button>6</button>
-                <button class="operator">-</button>
             </div>
-            <div>
+            <button class="operator">-</button>
+        </div>
+        <div>
+            <div class="num">
                 <button>1</button>
                 <button>2</button>
                 <button>3</button>
-                <button class="operator">÷</button>
             </div>
-            <div>
+            <button class="operator">÷</button>
+        </div>
+        <div>
+            <div class="num">
                 <button>0</button>
                 <button>.</button>
-                <button class="eval">=</button>
-                <button class="operator">x</button>
             </div>
+            <button class="eval">=</button>
+            <button class="operator">x</button>
         </div>
     </div>
-    <div id="qunit"></div>
-    <div id="qunit-fixture"></div>
+</div>
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
 <script src="../node_modules/qunitjs/qunit/qunit.js"></script>
 <script src="../src/Calculator.model.js"></script>
 <script src="calculator.js"></script>

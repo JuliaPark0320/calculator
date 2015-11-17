@@ -2,7 +2,11 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title></title>
+    <title>Calcurator</title>
+    <style>
+        .num{display: inline-block}
+        button{display: inline-block}
+    </style>
 </head>
 <body>
 <div id="calculator">
@@ -13,26 +17,34 @@
 
     <div class="keys">
         <div>
-            <button>7</button>
-            <button>8</button>
-            <button>9</button>
-            <button class="operator">+</button>
+            <div class="num">
+                <button>7</button>
+                <button>8</button>
+                <button>9</button>
+            </div>
+            <button class="operator" data-value="add">+</button>
         </div>
         <div>
-            <button>4</button>
-            <button>5</button>
-            <button>6</button>
+            <div class="num">
+                <button>4</button>
+                <button>5</button>
+                <button>6</button>
+            </div>
             <button class="operator">-</button>
         </div>
         <div>
-            <button>1</button>
-            <button>2</button>
-            <button>3</button>
+            <div class="num">
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+            </div>
             <button class="operator">÷</button>
         </div>
         <div>
-            <button>0</button>
-            <button>.</button>
+            <div class="num">
+                <button>0</button>
+                <button>.</button>
+            </div>
             <button class="eval">=</button>
             <button class="operator">x</button>
         </div>
