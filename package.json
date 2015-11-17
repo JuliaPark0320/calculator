@@ -1,0 +1,23 @@
+{
+  "name": "calurator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "qunitjs": "^1.20.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JuliaPark0320/calurator.git"
+  },
+  "author": "julia, park",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JuliaPark0320/calurator/issues"
+  },
+  "homepage": "https://github.com/JuliaPark0320/calurator"
+}
