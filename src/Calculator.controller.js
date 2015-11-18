@@ -11,33 +11,14 @@ Calculator.controller.prototype = {
             });
 
     },
-    updateScreen: function(value){
-        var formatValue = Number(value);
-
-        this._screen.value = formatValue;
-
-    },
 
     operate: function(value, operateType){
-        value = parseFloat(value, 10);
-        if(operateType === "+"){
-            this._model.add(value, operateType);
-        };
-
-        if(operateType === "-"){
-            this._model.subtract(value, operateType);
-        };
-
+        this._model.operate(value, operateType);
         this._view.displayScreenBy(this._model.getValue());
     },
 
-    remove: function(value){
-        if(value = "+"){
-            this._callbackOperate.add();
-        };
-
-        if(value = "-"){
-            this._callbackOperate.add();
-        };
+    remove: function(){
+        this._model.remove();
+        this._view.remove();
     }
 };

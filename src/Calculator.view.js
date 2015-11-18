@@ -6,8 +6,8 @@ Calculator.view = function(){
 Calculator.view.prototype = {
     init: function(option){
         this._callbackOperate = option.callbackOperate || function(){};
-        this._value = option.defaultValue || 0;
-        this._displayValue = option.defaultValue || [0];
+        this._displayValue = option.defaultValue || 0;
+        this._inputValue = "";
         this._isOverLength = false;
         this._cashElement(option);
         this._bindEvent();
@@ -19,6 +19,7 @@ Calculator.view.prototype = {
         this._screen = app.getElementsByClassName("screen")[0];
         this._remove = app.getElementsByClassName("clear")[0];
         this._key = app.getElementsByClassName("keys")[0];
+        this._operateType = this._key;
     },
 
     _bindEvent: function(){
@@ -26,62 +27,65 @@ Calculator.view.prototype = {
             this._key.attachEvent('onclick', this._onClickKey.bind(this));
         }else{
             this._key.addEventListener('click', this._onClickKey.bind(this));
-            this._remove.addEventListener('click', this._onClickRemove.bind(this));
+            this._remove.addEventListener('click', this._onClickRemove.bind(this), true);
         }
 
     },
 
     _onClickKey: function(event){
-        console.log(event);
         var type = event.target.dataset["type"];
         var value = event.target.innerText;
         if(type === "num"){
-            this._display(value);
+            this._displayInputValue(value);
             return;
         }
 
         if(type === "operator"){
-            this._callbackOperate(this._value, value);
+            this._callbackOperate(this._inputValue, value);
             return;
         }
 
     },
 
-    _display: function(value){
+    _displayInputValue: function(value){
         if(this._isOverLength === true){
             alert("입력은 10 자리까지만 가능합니다.");
             return;
         }
 
-        this._inputValue(value);
-        this._updateScreen(this._value);
+        this._setInputValue(value);
+        this._updateScreen(this._inputValue);
     },
 
-    _inputValue: function(value){
-        this._value += value;
+    _removeInputValue: function(){
+        this._inputValue = "";
+        this._isOverLength = false;
+    },
+
+    _setInputValue: function(value){
+        this._inputValue = this._inputValue + value;
         this._validate();
     },
 
-    _setValue: function(value){
-        this._value = value;
-    },
-
-    _setValue: function(value){
-        this._value = value;
+    _setDisplayValue: function(value){
+        this._displayValue = value;
     },
 
     displayScreenBy: function(value){
+        this._setDisplayValue(value);
         this._updateScreen(value);
-        this._setValue("");
+        this._removeInputValue();
     },
 
     _validate: function(value){
-        var str = Number(this._value).toString();
+        var str = Number(this._inputValue).toString();
         var removedPoint = str.replace(".", "");
         var length = removedPoint.length;
 
         if(length >= 10){
             this._isOverLength = true;
+        }else{
+            this._isOverLength = false;
         };
     },
 
@@ -92,8 +96,8 @@ Calculator.view.prototype = {
 
     },
 
-    _onClickRemove: function(){
-        this._value = 0;
-        this.updateScreen(this._value);
+    _onClickRemove: function(event){
+        this._removeInputValue();
+        this._updateScreen(0);
     }
 };
