@@ -97,7 +97,7 @@ Calculator.view.prototype = {
     },
 
     _displayInputValue: function(value){
-        if(this._isValid === true){
+        if(this._isValid === false){
             console.log("입력은 10 자리까지만 가능합니다.");
             return;
         }
