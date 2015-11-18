@@ -7,7 +7,8 @@ Calculator.controller.prototype = {
     init: function(oModel, oView, option){
         this._model = oModel || new Calculator.model({});
         this._view = oView || new Calculator.view({
-                callbackOperate: this.operate.bind(this)
+                callbackOperate: this.operate.bind(this),
+                callbackRemove: this.remove.bind(this)
             });
 
     },
@@ -19,6 +20,5 @@ Calculator.controller.prototype = {
 
     remove: function(){
         this._model.remove();
-        this._view.remove();
     }
 };

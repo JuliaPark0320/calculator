@@ -6,6 +6,7 @@ Calculator.view = function(){
 Calculator.view.prototype = {
     init: function(option){
         this._callbackOperate = option.callbackOperate || function(){};
+        this._callbackRemove = option.callbackRemove || function(){};
         this._displayValue = option.defaultValue || 0;
         this._inputValue = "";
         this._isOverLength = false;
@@ -90,7 +91,7 @@ Calculator.view.prototype = {
     },
 
     _updateScreen: function(value){
-        var formatValue = Number(value);
+        var formatValue = value == 0 ? 0 : Number(value);
 
         this._screen.value = formatValue;
 
@@ -99,5 +100,6 @@ Calculator.view.prototype = {
     _onClickRemove: function(event){
         this._removeInputValue();
         this._updateScreen(0);
+        this._callbackRemove(event);
     }
 };

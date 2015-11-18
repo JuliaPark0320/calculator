@@ -85,22 +85,13 @@ QUnit.test( "소수점은 5자리까지 계산한다. (5자리이하 버림.)", 
     equal(resultValue, expectedValue, "소수점 자리 - 5자리이상인 경우");
 });
 
-
-QUnit.test( "초기화를 할 수 있다.", function() {
-// given
-    var expactedValue = this.calculatorModel._defaultValue;
-// when
-    this.calculatorModel.remove();
-// then
-    equal(this.calculatorModel.getValue(), expactedValue, "초기화를 할 수 있다.");
-});
-
 QUnit.test( "R 키를 누를경우 초기화", function() {
 // given
     var expactedValue = 0;
 // when
     this.calculatorView._onClickRemove();
 // then
-    equal(this.calculatorView._screen.value, expactedValue, "초기화를 할 수 있다.");
+    equal(this.calculatorView._screen.value, expactedValue, "VIEW-초기화를 할 수 있다.");
+    equal(this.calculatorModel.getValue(), expactedValue, "MODEL-초기화를 할 수 있다.");
 });
 

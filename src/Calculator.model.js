@@ -91,6 +91,7 @@ Calculator.model.prototype = {
 
     remove: function(){
         this._result = this._defaultValue;
+        this._preValue = 0;
         this._operateType = "+";
     }
 };
