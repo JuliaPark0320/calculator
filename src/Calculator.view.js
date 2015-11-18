@@ -108,7 +108,7 @@ Calculator.view.prototype = {
 
     _removeInputValue: function(){
         this._inputValue = "";
-        this._isValid = false;
+        this._isValid = true;
     },
 
     _setInputValue: function(value){
