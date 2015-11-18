@@ -9,6 +9,7 @@ Calculator.model.prototype = {
     },
 
     _setProperty: function(option) {
+        option = option || {};
         this._defaultValue = option.defaultValue || 0;
         this._result = option.defaultValue || 0;
         this._decimalPlace = option.decimalPlace || 5;

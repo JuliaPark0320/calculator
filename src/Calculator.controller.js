@@ -12,7 +12,7 @@ Calculator.controller.prototype = {
             callbackRemove: option.callbackRemove || function(){}
         };
 
-        this._model = oModel || new Calculator.model({});
+        this._model = oModel || new Calculator.model();
         this._view = oView || new Calculator.view({
                 appId: option.appId,
                 callbackOperate: this.operate.bind(this),
