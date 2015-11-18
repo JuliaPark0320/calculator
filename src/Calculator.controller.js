@@ -4,9 +4,17 @@ Calculator.controller = function(){
 };
 
 Calculator.controller.prototype = {
-    init: function(oModel, oView, option){
+    init: function(option, oView, oModel){
+        option = {
+            appId: option.appId || "calculator",
+            defaultValue: option.defaultValue || 0,
+            callbackOperate: option.callbackOperate || function(){},
+            callbackRemove: option.callbackRemove || function(){}
+        };
+
         this._model = oModel || new Calculator.model({});
         this._view = oView || new Calculator.view({
+                appId: option.appId,
                 callbackOperate: this.operate.bind(this),
                 callbackRemove: this.remove.bind(this)
             });
