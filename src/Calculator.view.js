@@ -1,9 +1,16 @@
 /**
  * Calculator의 view 로직
- * @type {{}|Calculator}
+ * Calculator의 상위엘리먼트는 screen, clear, keys 엘리먼트 요소를 포함한다.
+ * screen 클래스 엘리먼트은 입력값과 계산 결과값을 노출한다.
+ * clear 클래스 엘리먼트는 초기화를 수행한다.
+ * keys 클래스 엘리먼트는 숫자키와 연산키를 포함하고 해당 이벤트를 실행한다.
+ * @type object
  * @param option= {
- *
- * }
+          appId: "calculator",
+          defaultValue: 0,
+          callbackOperate: function () {},
+          callbackRemove: function () {}
+      };
  */
 
 var Calculator = Calculator || {};
@@ -23,11 +30,10 @@ Calculator.view.prototype = {
     },
 
     /**
-     * 스크린을 param 값으로 보여준다.
+     * 스크린을 value 값으로 보여준다.
      * @param value 스크린에 보여줄 data
      */
     displayScreenBy: function(value){
-        this._setDisplayValue(value);
         this._updateScreen(value);
         this._removeInputValue();
     },
@@ -35,7 +41,7 @@ Calculator.view.prototype = {
     _setProperty: function (option) {
         option = option || {};
         this._inputValue = "";
-        this._isOverLength = false;
+        this._isValid = true;
         this._defaultValue = option.defaultValue || 0;
 
         //event callback함수.
@@ -49,23 +55,23 @@ Calculator.view.prototype = {
         if(app.getElementsByClassName){
             this._screen = app.getElementsByClassName("screen")[0];
             this._remove = app.getElementsByClassName("clear")[0];
-            this._key = app.getElementsByClassName("keys")[0];
+            this._keys = app.getElementsByClassName("keys")[0];
         }else{
             //IE8
             this._screen = app.querySelectorAll(".screen")[0];
             this._remove = app.querySelectorAll(".clear")[0];
-            this._key = app.querySelectorAll(".keys")[0];
+            this._keys = app.querySelectorAll(".keys")[0];
         }
-        this._operateType = this._key;
+        this._operateType = this._keys;
     },
 
     _bindEvent: function(){
-        if(this._key.attachEvent){
+        if(this._keys.attachEvent){
             //IE8
-            this._key.attachEvent('onclick', this._onClickKey.bind(this));
+            this._keys.attachEvent('onclick', this._onClickKey.bind(this));
             this._remove.attachEvent('onclick', this._onClickRemove.bind(this));
         }else{
-            this._key.addEventListener('click', this._onClickKey.bind(this));
+            this._keys.addEventListener('click', this._onClickKey.bind(this));
             this._remove.addEventListener('click', this._onClickRemove.bind(this));
         }
     },
@@ -91,8 +97,8 @@ Calculator.view.prototype = {
     },
 
     _displayInputValue: function(value){
-        if(this._isOverLength === true){
-            alert("입력은 10 자리까지만 가능합니다.");
+        if(this._isValid === true){
+            console.log("입력은 10 자리까지만 가능합니다.");
             return;
         }
 
@@ -102,28 +108,24 @@ Calculator.view.prototype = {
 
     _removeInputValue: function(){
         this._inputValue = "";
-        this._isOverLength = false;
+        this._isValid = false;
     },
 
     _setInputValue: function(value){
         this._inputValue = this._inputValue + value;
-        this._validate();
-    },
-
-    _setDisplayValue: function(value){
-        this._displayValue = value;
+        this._validate(this._inputValue);
     },
 
     _validate: function(value){
         //10자리까지만 입력 가능
-        var str = Number(this._inputValue).toString();
+        var str = Number(value).toString();
         var removedPoint = str.replace(".", "");
         var length = removedPoint.length;
 
         if(length >= 10){
-            this._isOverLength = true;
+            this._isValid = false;
         }else{
-            this._isOverLength = false;
+            this._isValid = true;
         };
     },
 

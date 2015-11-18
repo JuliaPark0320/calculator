@@ -23,7 +23,7 @@ QUnit.test( "덧셈 연산을 할 수 있다.", function() {
     var value = 0;
     var inputValue = 10;
     // when
-    this.calculatorModel.add(inputValue);
+    this.calculatorModel._add(inputValue);
     // then
     equal( this.calculatorModel.getValue(), value + inputValue, "덧셈 OK ");
 });
@@ -33,7 +33,7 @@ QUnit.test( "뺄셈 연산을 할 수 있다.", function() {
     var value = 0;
     var inputValue = 10;
     // when
-    this.calculatorModel.subtract(inputValue);
+    this.calculatorModel._subtract(inputValue);
     // then
     equal( this.calculatorModel.getValue(), value - inputValue, "뺄셈 OK ");
 });
@@ -43,7 +43,7 @@ QUnit.test( "나누기 연산을 할 수 있다.", function() {
     var value = 0;
     var inputValue = 10;
     // when
-    this.calculatorModel.divide(inputValue);
+    this.calculatorModel._divide(inputValue);
     // then
     equal( this.calculatorModel.getValue(), value / inputValue, "나누기 OK ");
 });
@@ -53,7 +53,7 @@ QUnit.test( "곱하기 연산을 할 수 있다.", function() {
     var value = 0;
     var inputValue = 10;
     // when
-    this.calculatorModel.multiply(inputValue);
+    this.calculatorModel._multiply(inputValue);
     // then
     equal( this.calculatorModel.getValue(), value * inputValue, "곱하기 OK ");
 });
@@ -120,4 +120,5 @@ QUnit.test( "1000단위 마다  ‘,’ 을 찍어준다.", function() {
     // then
     equal(this.calculatorView._screen.value, expactedValue, "0 가능");
 });
+
 
